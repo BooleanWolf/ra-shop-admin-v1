@@ -4,15 +4,8 @@ import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import prismadb from "@/lib/prismadb";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "http://localhost:3001",
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-  "Access-Control-Allow-Headers":
-    "X-Requested-With, Content-Type, X-Auth-Token, Origin, Authorization",
-};
-
-export async function OPTIONS() {
-  return NextResponse.json({}, { headers: corsHeaders });
+export async function OPTIONS(request: Request) {
+  return new Response(undefined, request);
 }
 
 export async function POST(
@@ -83,10 +76,5 @@ export async function POST(
     },
   });
 
-  return NextResponse.json(
-    { url: session.url },
-    {
-      headers: corsHeaders,
-    }
-  );
+  return NextResponse.json({ url: session.url });
 }
