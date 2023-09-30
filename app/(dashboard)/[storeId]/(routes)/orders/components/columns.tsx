@@ -46,6 +46,14 @@ export const columns: ColumnDef<OrderColumn>[] = [
     header: "Nagad Transaction",
   },
   {
+    accessorKey: "address",
+    header: "Address",
+  },
+  {
+    accessorKey: "createdAt",
+    header: "Time",
+  },
+  {
     id: "actions",
     cell: ({ row }) => <CellAction data={row.original} />
   },

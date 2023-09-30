@@ -12,7 +12,7 @@ export async function POST(
   req: Request,
   { params }: { params: { storeId: string } }
 ) {
-  const { productIds, bkashId, nagadId, phoneNumber } = await req.json();
+  const { productIds, bkashId, nagadId, phoneNumber, address } = await req.json();
 
   console.log(productIds, bkashId, nagadId);
 
@@ -50,6 +50,7 @@ export async function POST(
       bkashTrxId: bkashId,
       nagadTrxId: nagadId,
       phoneNumber: phoneNumber,
+      address: address,
       orderItems: {
         create: productIds.map((productId: string) => ({
           product: {
